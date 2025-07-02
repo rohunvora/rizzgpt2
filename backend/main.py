@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 from config import settings
+from routers.generate import router as generate_router
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -19,6 +20,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include routers
+app.include_router(generate_router)
 
 
 @app.get("/")
