@@ -4,6 +4,7 @@ import uvicorn
 
 from config import settings
 from routers.generate import router as generate_router
+from middleware.quota import QuotaMiddleware
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -20,6 +21,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add quota middleware
+app.add_middleware(QuotaMiddleware, free_tier_limit=5)
 
 # Include routers
 app.include_router(generate_router)
