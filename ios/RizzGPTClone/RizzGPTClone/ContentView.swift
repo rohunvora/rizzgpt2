@@ -2,27 +2,27 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "heart.fill")
-                .font(.system(size: 60))
-                .foregroundColor(.pink)
+        TabView {
+            ChatView()
+                .tabItem {
+                    Image(systemName: "message.fill")
+                    Text("Chat")
+                }
             
-            Text("RizzGPT Clone")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
+            LibraryView()
+                .tabItem {
+                    Image(systemName: "heart.fill")
+                    Text("Library")
+                }
             
-            Text("AI-Powered Dating Assistant")
-                .font(.headline)
-                .foregroundColor(.gray)
-            
-            Text("v1.0")
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.top, 40)
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear.fill")
+                    Text("Settings")
+                }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black)
+        .preferredColorScheme(.dark)
+        .accentColor(.pink)
     }
 }
 
